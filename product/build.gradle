@@ -37,7 +37,7 @@ tasks.named('test') {
 
 hibernate {
     enhancement {
-        enableAssociationManagement = true
+        enableAssociationManagement.set(true)
     }
 }
 
