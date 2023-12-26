@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 
 @Repository
-public interface SubscriptionRepository extends ReactiveMongoRepository<SubscriptionDocument, String> {
+interface SubscriptionRepository extends ReactiveMongoRepository<SubscriptionDocument, String> {
     Flux<SubscriptionDocument> findByEventPublisher(String eventPublisher);
 }
