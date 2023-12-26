@@ -1,6 +1,6 @@
 package com.baki.orchestration.adapter.in.http;
 
-record RegisterSubscriptionRequest(
+public record RegisterSubscriptionRequest(
         String subscriber,
         String eventPublisher
 ) {

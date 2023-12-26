@@ -12,12 +12,12 @@ import reactor.core.publisher.Mono;
 import java.io.IOException;
 
 @Component
-public class EventListener {
-    private final Logger log = LoggerFactory.getLogger(EventListener.class);
+public class EventConsumer {
+    private final Logger log = LoggerFactory.getLogger(EventConsumer.class);
     private final ObjectMapper objectMapper;
     private final RegisterEventUseCase registerEventUseCase;
 
-    public EventListener(RegisterEventUseCase registerEventUseCase, ObjectMapper objectMapper) {
+    public EventConsumer(RegisterEventUseCase registerEventUseCase, ObjectMapper objectMapper) {
         this.registerEventUseCase = registerEventUseCase;
         this.objectMapper = objectMapper;
     }

@@ -3,6 +3,7 @@ package com.baki.orchestration.adapter.in.http;
 import com.baki.orchestration.application.port.in.RegisterSubscriptionUseCase;
 import com.baki.orchestration.domain.SubscriptionDto;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
@@ -17,7 +18,7 @@ public class SubscriptionController {
     }
 
     @PostMapping
-    public Mono<Void> register(RegisterSubscriptionRequest request) {
+    public Mono<Void> register(@RequestBody RegisterSubscriptionRequest request) {
         var dto = new SubscriptionDto(null, request.subscriber(), request.eventPublisher());
         return registerSubscriptionUseCase.register(dto);
     }
