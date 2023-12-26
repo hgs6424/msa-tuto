@@ -2,10 +2,10 @@ package com.baki.orchestration.domain;
 
 record Subscription(
         Id id,
-        Subscriber subscriber,
-        EventPublisher eventPublisher
+        DomainServiceType subscriber,
+        DomainServiceType eventPublisher
 ) {
     public static Subscription create(String id, String subscriber, String eventPublisher) {
-        return new Subscription(new Id(id), Subscriber.valueOf(subscriber), EventPublisher.valueOf(eventPublisher));
+        return new Subscription(new Id(id), DomainServiceType.valueOf(subscriber), DomainServiceType.valueOf(eventPublisher));
     }
 }
