@@ -16,6 +16,9 @@ class ProductJpaEntity {
     @Enumerated(value = EnumType.STRING)
     private Status status;
 
+    protected ProductJpaEntity() {
+    }
+
     public ProductJpaEntity(Long id, String name, Integer quantity, String status) {
         this.id = id;
         this.name = name;
