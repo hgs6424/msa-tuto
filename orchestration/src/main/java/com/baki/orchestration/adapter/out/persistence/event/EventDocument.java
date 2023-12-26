@@ -3,15 +3,17 @@ package com.baki.orchestration.adapter.out.persistence.event;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Map;
+
 @Document(collection = "events")
 class EventDocument {
     @Id
     private String id;
     private String eventPublisher;
     private String eventType;
-    private String payload;
+    private Map<String ,Object> payload;
 
-    public EventDocument(String id, String eventPublisher, String eventType, String payload) {
+    public EventDocument(String id, String eventPublisher, String eventType, Map<String ,Object> payload) {
         this.id = id;
         this.eventPublisher = eventPublisher;
         this.eventType = eventType;
@@ -30,7 +32,7 @@ class EventDocument {
         return eventType;
     }
 
-    public String getPayload() {
+    public Map<String ,Object> getPayload() {
         return payload;
     }
 }

@@ -1,4 +1,6 @@
 package com.baki.orchestration.domain;
 
-record Payload(String value) {
+import java.util.Map;
+
+record Payload(Map<String, Object> value) {
 }
