@@ -1,4 +1,4 @@
-package com.baki.orchestration.adapter.out.persistence;
+package com.baki.orchestration.adapter.out.persistence.event;
 
 import com.baki.orchestration.application.port.out.SaveEventPort;
 import com.baki.orchestration.domain.EventDto;

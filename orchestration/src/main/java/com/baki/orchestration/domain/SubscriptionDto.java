@@ -1,6 +1,6 @@
 package com.baki.orchestration.domain;
 
-public record SubscribeDto(
+public record SubscriptionDto(
         String id,
         String subscriber,
         String eventPublisher

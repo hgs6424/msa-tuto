@@ -1,4 +1,4 @@
-package com.baki.orchestration.adapter.out.persistence;
+package com.baki.orchestration.adapter.out.persistence.event;
 
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;

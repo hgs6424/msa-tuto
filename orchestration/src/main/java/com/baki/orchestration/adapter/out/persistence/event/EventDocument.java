@@ -1,4 +1,4 @@
-package com.baki.orchestration.adapter.out.persistence;
+package com.baki.orchestration.adapter.out.persistence.event;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

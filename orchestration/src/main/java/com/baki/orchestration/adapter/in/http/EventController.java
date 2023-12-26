@@ -1,6 +1,6 @@
 package com.baki.orchestration.adapter.in.http;
 
-import com.baki.orchestration.application.port.in.OccurEventUseCase;
+import com.baki.orchestration.application.port.in.RegisterEventUseCase;
 import com.baki.orchestration.domain.EventDto;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,14 +11,14 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("event")
 public class EventController {
-    private final OccurEventUseCase occurEventUseCase;
+    private final RegisterEventUseCase registerEventUseCase;
 
-    public EventController(OccurEventUseCase occurEventUseCase) {
-        this.occurEventUseCase = occurEventUseCase;
+    public EventController(RegisterEventUseCase registerEventUseCase) {
+        this.registerEventUseCase = registerEventUseCase;
     }
 
     @PostMapping
-    public Mono<Void> occurEvent(@RequestBody OccurEventRequest request) {
-        return occurEventUseCase.occur(new EventDto(null, request.eventPublisher(), request.eventType(), request.payload()));
+    public Mono<Void> registerEvent(@RequestBody RegisterEventRequest request) {
+        return registerEventUseCase.register(new EventDto(null, request.eventPublisher(), request.eventType(), request.payload()));
     }
 }
