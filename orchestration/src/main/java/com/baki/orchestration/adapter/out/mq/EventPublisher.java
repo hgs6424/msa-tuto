@@ -4,6 +4,8 @@ import com.baki.orchestration.application.port.out.PublishEventPort;
 import com.baki.orchestration.domain.EventDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
@@ -14,6 +16,7 @@ public class EventPublisher implements PublishEventPort {
     private final RabbitTemplate rabbitTemplate;
     private final ObjectMapper objectMapper;
     public static final String EXCHANGE = "eda";
+    private final Logger log = LoggerFactory.getLogger(EventPublisher.class);
 
     public EventPublisher(RabbitTemplate rabbitTemplate, ObjectMapper objectMapper) {
         this.rabbitTemplate = rabbitTemplate;
@@ -26,8 +29,11 @@ public class EventPublisher implements PublishEventPort {
                     try {
                         var message = objectMapper.writeValueAsString(dto);
                         return subscribersFlux.flatMap(subscriber ->
-                                Mono.fromRunnable(() ->
-                                        rabbitTemplate.convertAndSend(EXCHANGE, subscriber.toLowerCase(), message)));
+                                Mono.fromRunnable(() ->{
+                                        rabbitTemplate.convertAndSend(EXCHANGE, subscriber.toLowerCase(), message);
+                                        log.info("[publish message] exchange = {}, routingKey = {}, message = {}", EXCHANGE, subscriber.toLowerCase(), message);
+                                        }
+                                ));
                     } catch (JsonProcessingException e) {
                         return Mono.error(RuntimeException::new);
                     }

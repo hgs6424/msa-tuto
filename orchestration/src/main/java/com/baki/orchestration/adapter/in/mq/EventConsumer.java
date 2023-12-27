@@ -26,6 +26,7 @@ public class EventConsumer {
     public Mono<Void> consumeEvent(String message) {
         try {
             var event = objectMapper.readValue(message, EventDto.class);
+            log.info("[consume event] {}", event);
             return registerEventUseCase.register(event).then();
         } catch (IOException e) {
             log.error("message convert fail");
