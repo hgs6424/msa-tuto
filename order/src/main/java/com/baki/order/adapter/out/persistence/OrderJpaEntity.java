@@ -3,7 +3,7 @@ package com.baki.order.adapter.out.persistence;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "orders", schema = "order")
+@Table(name = "orders")
 class OrderJpaEntity {
 
     @Id
