@@ -1,6 +1,7 @@
 package com.baki.product.application.service;
 
 import com.baki.product.application.port.in.*;
+import com.baki.product.application.port.out.LoadOrderPort;
 import com.baki.product.application.port.out.LoadPort;
 import com.baki.product.application.port.out.SavePort;
 import com.baki.product.domain.product.ProductDto;
@@ -16,11 +17,13 @@ SellOutUseCase, StopSellingUseCase {
     private final ProductService productService;
     private final LoadPort loadPort;
     private final SavePort savePort;
+    private final LoadOrderPort loadOrderPort;
 
-    public ProductAppService(ProductService productService, LoadPort loadPort, SavePort savePort) {
+    public ProductAppService(ProductService productService, LoadPort loadPort, SavePort savePort, LoadOrderPort loadOrderPort) {
         this.productService = productService;
         this.loadPort = loadPort;
         this.savePort = savePort;
+        this.loadOrderPort = loadOrderPort;
     }
 
     @Override
@@ -37,9 +40,10 @@ SellOutUseCase, StopSellingUseCase {
     }
 
     @Override
-    public void decrease(Long id, Integer count) {
-        var productDto = loadPort.load(id).orElseThrow(NoSuchElementException::new);
-        productDto = productService.decrease(productDto, count);
+    public void decrease(Long orderId) {
+        var orderDto = loadOrderPort.load(orderId);
+        var productDto = loadPort.load(orderDto.prodcutId()).orElseThrow(NoSuchElementException::new);
+        productDto = productService.decrease(productDto, orderDto.count());
         savePort.save(productDto);
     }
 
@@ -49,9 +53,10 @@ SellOutUseCase, StopSellingUseCase {
     }
 
     @Override
-    public void increase(Long id, Integer count) {
-        var productDto = loadPort.load(id).orElseThrow(NoSuchElementException::new);
-        productDto = productService.increase(productDto, count);
+    public void increase(Long orderId) {
+        var orderDto = loadOrderPort.load(orderId);
+        var productDto = loadPort.load(orderId).orElseThrow(NoSuchElementException::new);
+        productDto = productService.increase(productDto, orderDto.count());
         savePort.save(productDto);
     }
 
