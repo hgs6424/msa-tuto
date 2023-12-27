@@ -3,7 +3,7 @@ package com.baki.product.adapter.out.persistence;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "product", schema = "product")
+@Table(name = "products", schema = "PRODUCT")
 class ProductJpaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
