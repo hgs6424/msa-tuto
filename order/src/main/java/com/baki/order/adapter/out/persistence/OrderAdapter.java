@@ -24,7 +24,7 @@ public class OrderAdapter implements LoadOrderPort, SaveOrderPort {
 
     @Override
     public OrderDto save(OrderDto orderDto) {
-        var entity = new OrderJpaEntity(orderDto.id(), orderDto.prodcutId(), orderDto.count(), orderDto.userId(), Status.valueOf(orderDto.status()));
+        var entity = new OrderJpaEntity(orderDto.id(), orderDto.productId(), orderDto.count(), orderDto.userId(), Status.valueOf(orderDto.status()));
         entity = orderRepository.save(entity);
         return new OrderDto(entity.getId(), entity.getProductId(), entity.getCount(), entity.getUserId(), entity.getStatus().name());
     }

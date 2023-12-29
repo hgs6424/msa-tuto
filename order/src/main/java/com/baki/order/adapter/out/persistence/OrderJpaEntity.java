@@ -9,7 +9,6 @@ class OrderJpaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Long productId;
     private Integer count;
     private Long userId;

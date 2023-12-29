@@ -15,35 +15,39 @@ class Order {
         this.status = Status.valueOf(status);
     }
 
-    public static Order create(Long productId, Integer count, Long userId) {
-        return new Order(null, productId, count, userId, Status.REQUESTED.name());
+    static Order create(Long productId, Integer count, Long userId) {
+        return new Order(null, productId, count, userId, Status.COMPLETED.name());
     }
 
-    public static Order fromDto(OrderDto orderDto) {
-        return new Order(orderDto.id(), orderDto.prodcutId(), orderDto.count(), orderDto.userId(), orderDto.status());
+    static Order fromDto(OrderDto orderDto) {
+        return new Order(orderDto.id(), orderDto.productId(), orderDto.count(), orderDto.userId(), orderDto.status());
     }
 
-    public Id getId() {
+    Id getId() {
         return id;
     }
 
-    public Id getProdcutId() {
+    Id getProdcutId() {
         return prodcutId;
     }
 
-    public Count getCount() {
+    Count getCount() {
         return count;
     }
 
-    public Id getUserId() {
+    Id getUserId() {
         return userId;
     }
 
-    public Status getStatus() {
+    Status getStatus() {
         return status;
     }
 
-    public void cancel() {
+    void cancel() {
         this.status = Status.CANCELED;
+    }
+
+    void reject() {
+        this.status = Status.REJECTED;
     }
 }

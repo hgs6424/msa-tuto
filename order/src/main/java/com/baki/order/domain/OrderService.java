@@ -22,4 +22,14 @@ public class OrderService {
                 order.getUserId().value(),
                 order.getStatus().name());
     }
+
+    public OrderDto reject(OrderDto orderDto) {
+        var order = Order.fromDto(orderDto);
+        order.reject();
+        return new OrderDto(order.getId().value(),
+                order.getProdcutId().value(),
+                order.getCount().value(),
+                order.getUserId().value(),
+                order.getStatus().name());
+    }
 }

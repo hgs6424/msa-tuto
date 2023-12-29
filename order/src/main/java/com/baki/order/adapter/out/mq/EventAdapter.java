@@ -1,6 +1,6 @@
 package com.baki.order.adapter.out.mq;
 
-import com.baki.order.application.EventDto;
+import com.baki.order.common.EventDto;
 import com.baki.order.application.port.out.PublishEventPort;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
