@@ -29,7 +29,7 @@ public class EventAdapter implements PublishEventPort {
             rabbitTemplate.convertAndSend(EXCHANGE, ROUTING_KEY, message);
             log.info("[publish message] exchange = {}, routingKey = {}, message = {}", EXCHANGE, ROUTING_KEY, message);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            log.error("message parsing error : {}", e.getMessage());
         }
     }
 }
