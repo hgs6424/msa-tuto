@@ -19,7 +19,7 @@ class OrderJpaEntity {
     protected OrderJpaEntity() {
     }
 
-    public OrderJpaEntity(Long id, Long productId, Integer count, Long userId, Status status) {
+    protected OrderJpaEntity(Long id, Long productId, Integer count, Long userId, Status status) {
         this.id = id;
         this.productId = productId;
         this.count = count;
@@ -27,23 +27,23 @@ class OrderJpaEntity {
         this.status = status;
     }
 
-    public Long getId() {
+    Long getId() {
         return id;
     }
 
-    public Long getProductId() {
+    Long getProductId() {
         return productId;
     }
 
-    public Integer getCount() {
+    Integer getCount() {
         return count;
     }
 
-    public Long getUserId() {
+    Long getUserId() {
         return userId;
     }
 
-    public Status getStatus() {
+    Status getStatus() {
         return status;
     }
 }

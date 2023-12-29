@@ -42,7 +42,7 @@ SellOutUseCase, StopSellingUseCase {
     @Override
     public void decrease(Long orderId) {
         var orderDto = loadOrderPort.load(orderId);
-        var productDto = loadPort.load(orderDto.prodcutId()).orElseThrow(NoSuchElementException::new);
+        var productDto = loadPort.load(orderDto.productId()).orElseThrow(NoSuchElementException::new);
         productDto = productService.decrease(productDto, orderDto.count());
         savePort.save(productDto);
     }
